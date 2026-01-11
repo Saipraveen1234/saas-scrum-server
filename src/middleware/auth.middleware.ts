@@ -1,12 +1,13 @@
-import { Request, Response, NextFunction } from 'express';
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
-import { Client } from 'pg';
+import { Request, Response, NextFunction } from "express";
+import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
+import { Client } from "pg";
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.SUPABASE_URL || "";
+const supabaseKey = process.env.SUPABASE_ANON_KEY || "";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // DB Client for role check (reusing the one from index.ts would be better, but for now creating a new pool or passing it is needed)
@@ -23,70 +24,67 @@ export interface AuthRequest extends Request {
     id: string;
     email: string;
     name?: string;
-    role: 'admin' | 'employee';
+    role: "admin" | "employee";
     team_id?: number | null;
     team_name?: string | null;
   };
 }
 
-export const authMiddleware = (dbClient: Client) => async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-      return res.status(401).json({ error: 'Missing Authorization header' });
-    }
+export const authMiddleware =
+  (dbClient: Client) =>
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const authHeader = req.headers.authorization;
+      if (!authHeader) {
+        return res.status(401).json({ error: "Missing Authorization header" });
+      }
 
-    const token = authHeader.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(token);
+      const token = authHeader.split(' ')[1];
 
-    if (error || !user) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as any;
+      console.log(`[AuthMiddleware] User ID: ${decoded.id}`);
+
+      // Continue to fetch full user roles from DB
+      const roleResult = await dbClient.query(`
+        SELECT ur.user_id, ur.email, ur.name, ur.role, ur.team_id, t.name as team_name 
+        FROM user_roles ur 
+        LEFT JOIN teams t ON ur.team_id = t.id 
+        WHERE ur.user_id = $1
+      `, [decoded.id]);
+
+      let role: 'admin' | 'employee' = 'employee';
+      let team_id: number | null = null;
+      let team_name: string | null = null;
+      let name: string = 'User';
+
+      if (roleResult.rows.length > 0) {
+        const row = roleResult.rows[0];
+        role = row.role;
+        team_id = row.team_id;
+        team_name = row.team_name;
+        name = row.name;
+        
+        (req as AuthRequest).user = {
+          id: decoded.id,
+          email: decoded.email,
+          name: name,
+          role: role,
+          team_id: team_id,
+          team_name: team_name
+        };
+        next();
+      } else {
+        // Should not happen if token is valid and user wasn't deleted
+        return res.status(401).json({ error: 'User not found' });
+      }
+
+    } catch (err) {
+      console.error('Token Verification Failed:', err);
       return res.status(401).json({ error: 'Invalid token' });
     }
-
-    // Fetch role and team from DB
-    const roleResult = await dbClient.query(`
-      SELECT ur.role, ur.name, ur.team_id, t.name as team_name 
-      FROM user_roles ur 
-      LEFT JOIN teams t ON ur.team_id = t.id 
-      WHERE ur.user_id = $1
-    `, [user.id]);
-
-    let role: 'admin' | 'employee' = 'employee'; // Default
-    let team_id: number | null = null;
-    let team_name: string | null = null;
-
-    console.log(`[AuthMiddleware] User ID: ${user.id}`);
-
-    if (roleResult.rows.length > 0) {
-      const row = roleResult.rows[0];
-      role = row.role;
-      team_id = row.team_id;
-      team_name = row.team_name;
-      console.log(`[AuthMiddleware] Role: ${role}, Team: ${team_name}`);
-      
-      (req as AuthRequest).user = {
-        id: user.id,
-        email: user.email || '',
-        name: row.name || user.email?.split('@')[0] || 'User',
-        role: role,
-        team_id: team_id,
-        team_name: team_name
-      };
-    } else {
-      console.log(`[AuthMiddleware] No role found in DB, defaulting to: ${role}`);
-      (req as AuthRequest).user = {
-        id: user.id,
-        email: user.email || '',
-        name: user.email?.split('@')[0] || 'User',
-        role: role,
-        team_id: team_id,
-        team_name: team_name
-      };
+    } catch (err) {
+      console.error("Auth Middleware Error:", err);
+      res.status(500).json({ error: "Internal Server Error" });
     }
-
-    next();
-  } catch (err) {
-    console.error('Auth Middleware Error:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+  };

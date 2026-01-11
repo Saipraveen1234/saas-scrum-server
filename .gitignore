@@ -36,8 +36,6 @@ logs/
 coverage/
 .nyc_output/
 
-# Docker
-.dockerignore
 
 # Misc
 .cache/

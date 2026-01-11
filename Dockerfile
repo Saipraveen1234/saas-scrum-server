@@ -1,14 +1,13 @@
-# Use Node.js LTS version
-FROM node:20-alpine
+# Build Stage
+FROM node:20-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install ALL dependencies (including dev dependencies for build)
-RUN npm ci
+# Install dependencies
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -16,8 +15,19 @@ COPY . .
 # Build TypeScript code
 RUN npm run build
 
-# Remove dev dependencies
-RUN npm prune --production
+# Production Stage
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm install --only=production
+
+# Copy built artifacts from builder stage
+COPY --from=builder /app/dist ./dist
 
 # Expose port
 EXPOSE 3000

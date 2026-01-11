@@ -12,7 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: true, // Reflect request origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  credentials: true
+}));
+app.options('*', cors()); // Enable pre-flight for all routes
+app.use((req, res, next) => {
+  console.log(`[Request] ${req.method} ${req.url}`);
+  next();
+});
 app.use(express.json());
 
 // Database Setup
@@ -20,9 +30,10 @@ if (!process.env.DATABASE_URL) {
   console.error("FATAL: DATABASE_URL missing");
   process.exit(1);
 }
+const isLocal = process.env.DATABASE_URL?.includes('@postgres:5432');
 const dbClient = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: isLocal ? false : { rejectUnauthorized: false },
 });
 dbClient.connect().catch((err) => console.error("DB Error:", err));
 
@@ -33,6 +44,8 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 const clickupService = new ClickUpService();
 
 // --- ROUTES ---
+import { authRoutes } from "./routes/auth";
+app.use("/api/auth", authRoutes(dbClient));
 
 app.get("/health", (req: Request, res: Response) => {
   res.json({ status: "OK" });
