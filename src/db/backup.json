@@ -1,0 +1,399 @@
+{
+  "user_roles": [
+    {
+      "user_id": "2317f157-b075-4d2a-beec-fd08153d4d54",
+      "role": "employee",
+      "email": "employee@test.com",
+      "team_id": 1,
+      "name": "Employee"
+    },
+    {
+      "user_id": "434113e8-1181-4e52-8222-7223c04bc5a7",
+      "role": "employee",
+      "email": "admin@employee.com",
+      "team_id": 1,
+      "name": "Admin"
+    },
+    {
+      "user_id": "369ef9bb-4a56-4fb3-9a42-8f6737293ec6",
+      "role": "admin",
+      "email": "admin@admin.com",
+      "team_id": 2,
+      "name": "Admin"
+    },
+    {
+      "user_id": "2631aaa9-6282-4253-84ac-6f8d0cadcad2",
+      "role": "employee",
+      "email": "yourssaipraveen@gmail.com",
+      "team_id": 1,
+      "name": "Sai Praveen"
+    },
+    {
+      "user_id": "d0d3250c-48e9-482b-90dd-9062d8c2e512",
+      "role": "admin",
+      "email": "admin@test.com",
+      "team_id": 1,
+      "name": "Praveen"
+    },
+    {
+      "user_id": "6054fbb9-d1d6-4349-b245-b977116c6934",
+      "role": "employee",
+      "email": "test@example.com",
+      "team_id": null,
+      "name": "Test"
+    },
+    {
+      "user_id": "d9620be1-fb83-4daa-8912-20fd138a45db",
+      "role": "employee",
+      "email": "admin@admin.com",
+      "team_id": null,
+      "name": "Admin"
+    },
+    {
+      "user_id": "9488745c-7c6e-47ad-a6f5-53b58c6a64b6",
+      "role": "admin",
+      "email": "praveen@employee.com",
+      "team_id": 3,
+      "name": "Praveen"
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "Charge Capture",
+      "created_at": "2025-11-23T03:22:45.177628+00:00",
+      "clickup_list_id": null
+    },
+    {
+      "id": 2,
+      "name": "MedRCM",
+      "created_at": "2025-11-23T03:35:12.242588+00:00",
+      "clickup_list_id": null
+    },
+    {
+      "id": 3,
+      "name": "Deshnadh team",
+      "created_at": "2025-11-23T13:27:09.73397+00:00",
+      "clickup_list_id": null
+    }
+  ],
+  "standups": [
+    {
+      "id": "26550d8d-1839-433a-942c-31b6dfb6846a",
+      "user_name": "Alice",
+      "yesterday": "Fixed the login bug",
+      "today": "Working on API",
+      "blockers": "None",
+      "created_at": "2025-11-20T08:07:50.29169+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "2698ce7f-a69d-4a14-8002-d04dc6e00848",
+      "user_name": "Bob",
+      "yesterday": "Designed the homepage",
+      "today": "Slicing the CSS",
+      "blockers": "Waiting for assets",
+      "created_at": "2025-11-20T08:07:50.29169+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "82dfa2ad-6d89-4725-884c-c6a9d924aefd",
+      "user_name": "ricardo",
+      "yesterday": "fixed api calls",
+      "today": "testing endpoints",
+      "blockers": "No blockers",
+      "created_at": "2025-11-21T02:08:32.067854+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "01b5ac16-1cda-4c14-a611-139b5a72c873",
+      "user_name": "hi",
+      "yesterday": "finished UI",
+      "today": "Fixing bugs in UI",
+      "blockers": "No issues",
+      "created_at": "2025-11-21T02:36:32.690243+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "91621137-f36b-4f51-8534-5f95f095455d",
+      "user_name": "abcd",
+      "yesterday": "fixed ui issues",
+      "today": "making better",
+      "blockers": "no issues",
+      "created_at": "2025-11-21T02:56:01.590995+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "4ebaeb3b-f51e-4ca5-930f-388298b67bcb",
+      "user_name": "praveen",
+      "yesterday": "completed CC UI",
+      "today": "Waiting for next ticket",
+      "blockers": "No blockers",
+      "created_at": "2025-11-21T03:16:38.966757+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "5f7a523e-c6d1-477c-89b4-8411c676f2ec",
+      "user_name": "Praveen",
+      "yesterday": "Completed Testing the Admin Role and created a bug report for admin role",
+      "today": "Creating tickets for the bugs so that daniel can assign to respective developers",
+      "blockers": "None",
+      "created_at": "2025-11-22T09:39:50.710214+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "0c8d1b3b-bb8a-44c0-b4d2-803751596f6b",
+      "user_name": "Ricardo",
+      "yesterday": "Completed Fixing bug tickets that praveen created in super admin role",
+      "today": "Will work on Admin role tickets that praveen creates today",
+      "blockers": "Waiting for tickets from praveen",
+      "created_at": "2025-11-22T09:41:18.969632+00:00",
+      "user_id": null,
+      "team_id": null
+    },
+    {
+      "id": "e0179c5c-9392-45b0-b676-6da6002f4839",
+      "user_name": "Employee",
+      "yesterday": "Completed review of bug documents",
+      "today": "Working on bugs",
+      "blockers": "None",
+      "created_at": "2025-11-22T10:18:23.864849+00:00",
+      "user_id": "2317f157-b075-4d2a-beec-fd08153d4d54",
+      "team_id": null
+    },
+    {
+      "id": "1fa52c33-d794-462a-9697-e79bcfe0e102",
+      "user_name": "Praveen",
+      "yesterday": "Completed api fixing",
+      "today": "creating pipelines",
+      "blockers": "None",
+      "created_at": "2025-11-22T10:34:12.250052+00:00",
+      "user_id": "9488745c-7c6e-47ad-a6f5-53b58c6a64b6",
+      "team_id": null
+    },
+    {
+      "id": "94649d5e-1040-44ff-bf19-787d62e4eb7f",
+      "user_name": "Praveen",
+      "yesterday": "Fixed API calls",
+      "today": "I am Continuing with remaining tickets from daniel",
+      "blockers": "No blockers",
+      "created_at": "2025-11-23T13:25:47.974043+00:00",
+      "user_id": "9488745c-7c6e-47ad-a6f5-53b58c6a64b6",
+      "team_id": null
+    },
+    {
+      "id": "aab68d11-53e6-4ea0-8d82-03579f6be5fa",
+      "user_name": "Praveen",
+      "yesterday": "Fixed Api Calls",
+      "today": "Fixing Bugs from Charge Capture",
+      "blockers": "None",
+      "created_at": "2025-11-24T16:25:41.006312+00:00",
+      "user_id": "9488745c-7c6e-47ad-a6f5-53b58c6a64b6",
+      "team_id": null
+    },
+    {
+      "id": "350d7e9c-f017-4161-9505-5bf438012abd",
+      "user_name": "Sai Praveen",
+      "yesterday": "completed figma design",
+      "today": "Working on redesign",
+      "blockers": "None",
+      "created_at": "2025-11-25T06:27:52.508856+00:00",
+      "user_id": "2631aaa9-6282-4253-84ac-6f8d0cadcad2",
+      "team_id": null
+    },
+    {
+      "id": "763ac5a9-bf97-431e-9bda-2b03b46c8aad",
+      "user_name": "Daniel",
+      "yesterday": "fixed api calls ",
+      "today": "redesign the UI",
+      "blockers": "",
+      "created_at": "2025-11-26T08:49:58.237303+00:00",
+      "user_id": "d0d3250c-48e9-482b-90dd-9062d8c2e512",
+      "team_id": null
+    },
+    {
+      "id": "74929ff8-3d3a-424a-9ff6-30c82e2e89e0",
+      "user_name": "Praveen",
+      "yesterday": "COmpleted UI design",
+      "today": "Work on Developing the UI design",
+      "blockers": "",
+      "created_at": "2025-12-09T02:18:47.88263+00:00",
+      "user_id": "d0d3250c-48e9-482b-90dd-9062d8c2e512",
+      "team_id": null
+    }
+  ],
+  "sprints": [
+    {
+      "id": 1,
+      "name": "Sprint 24",
+      "start_date": "2025-11-11",
+      "end_date": "2025-12-09",
+      "status": "completed",
+      "goal": "Complete dashboard redesign and backend integration",
+      "created_at": "2025-11-25T05:38:59.262719"
+    },
+    {
+      "id": 2,
+      "name": "Sprint 24",
+      "start_date": "2025-11-26",
+      "end_date": "2025-12-10",
+      "status": "completed",
+      "goal": "Ensure seamless and reliable Dialysis workflow by resolving critical code and API issues.\n",
+      "created_at": "2025-11-26T09:04:45.59218"
+    },
+    {
+      "id": 3,
+      "name": "Sprint 49",
+      "start_date": "2025-12-05",
+      "end_date": "2025-12-19",
+      "status": "completed",
+      "goal": "Deliver a stable and intuitive Dialysis experience.\n",
+      "created_at": "2025-12-05T05:53:52.163823"
+    },
+    {
+      "id": 4,
+      "name": "Sprint 49",
+      "start_date": "2025-12-05",
+      "end_date": "2025-12-19",
+      "status": "completed",
+      "goal": "Deliver a stable and intuitive Dialysis experience.\n",
+      "created_at": "2025-12-05T05:54:05.294694"
+    },
+    {
+      "id": 5,
+      "name": "Sprint 49",
+      "start_date": "2025-12-05",
+      "end_date": "2025-12-19",
+      "status": "active",
+      "goal": "Deliver a stable and intuitive dialysis management experience by resolving critical errors and enhancing the user interface.\n",
+      "created_at": "2025-12-05T06:02:16.784819"
+    }
+  ],
+  "sprint_snapshots": [
+    {
+      "id": 1,
+      "sprint_id": 1,
+      "date": "2025-11-11",
+      "total_points": 100,
+      "completed_points": 0,
+      "remaining_points": 100,
+      "created_at": "2025-11-25T05:38:59.342622"
+    },
+    {
+      "id": 2,
+      "sprint_id": 1,
+      "date": "2025-11-12",
+      "total_points": 100,
+      "completed_points": 8,
+      "remaining_points": 92,
+      "created_at": "2025-11-25T05:38:59.402694"
+    },
+    {
+      "id": 3,
+      "sprint_id": 1,
+      "date": "2025-11-13",
+      "total_points": 100,
+      "completed_points": 16,
+      "remaining_points": 84,
+      "created_at": "2025-11-25T05:38:59.622963"
+    },
+    {
+      "id": 4,
+      "sprint_id": 1,
+      "date": "2025-11-14",
+      "total_points": 100,
+      "completed_points": 24,
+      "remaining_points": 76,
+      "created_at": "2025-11-25T05:38:59.687674"
+    },
+    {
+      "id": 5,
+      "sprint_id": 1,
+      "date": "2025-11-15",
+      "total_points": 100,
+      "completed_points": 32,
+      "remaining_points": 68,
+      "created_at": "2025-11-25T05:38:59.742684"
+    },
+    {
+      "id": 6,
+      "sprint_id": 1,
+      "date": "2025-11-16",
+      "total_points": 100,
+      "completed_points": 40,
+      "remaining_points": 60,
+      "created_at": "2025-11-25T05:38:59.792767"
+    },
+    {
+      "id": 7,
+      "sprint_id": 1,
+      "date": "2025-11-17",
+      "total_points": 100,
+      "completed_points": 48,
+      "remaining_points": 52,
+      "created_at": "2025-11-25T05:38:59.842699"
+    },
+    {
+      "id": 8,
+      "sprint_id": 1,
+      "date": "2025-11-18",
+      "total_points": 100,
+      "completed_points": 56,
+      "remaining_points": 44,
+      "created_at": "2025-11-25T05:38:59.902663"
+    },
+    {
+      "id": 9,
+      "sprint_id": 1,
+      "date": "2025-11-19",
+      "total_points": 100,
+      "completed_points": 64,
+      "remaining_points": 36,
+      "created_at": "2025-11-25T05:38:59.957651"
+    },
+    {
+      "id": 10,
+      "sprint_id": 1,
+      "date": "2025-11-20",
+      "total_points": 100,
+      "completed_points": 72,
+      "remaining_points": 28,
+      "created_at": "2025-11-25T05:39:00.013907"
+    }
+  ],
+  "sprint_risks": [
+    {
+      "id": 1,
+      "sprint_id": 1,
+      "risk_score": 63,
+      "risk_level": "Moderate",
+      "analysis": "Risk is moderate due to backend integration complexity.",
+      "created_at": "2025-11-25T05:39:00.070717"
+    }
+  ],
+  "task_ai_insights": [
+    {
+      "id": 1,
+      "task_id": "86d12areh",
+      "suggestion_type": "analysis",
+      "suggestion_text": "{\"score\":1,\"suggestion\":\"Split this task and add comprehensive acceptance criteria, detailed user stories, and estimations.\",\"reasoning\":\"The title 'Redesign Complete UI' is far too broad and vague. The empty description compounds the problem. Without a more precise scope, acceptance criteria, and smaller, more manageable sub-tasks, the team cannot effectively plan, estimate, or execute this work. 'Complete UI' is extremely ambiguous - what UI elements are included? What constitutes a redesign (visual refresh, architectural changes, functionality updates)? This single item represents a large, undefined effort. The lack of a description makes it impossible to understand the intent or the value it delivers.\"}",
+      "status": "pending",
+      "created_at": "2025-11-26T08:53:34.156848"
+    },
+    {
+      "id": 2,
+      "task_id": "86d132m8z",
+      "suggestion_type": "analysis",
+      "suggestion_text": "{\"score\":8,\"suggestion\":\"Add acceptance criteria\",\"reasoning\":\"The backlog item is generally well-written with a clear title, description, steps to reproduce, expected and actual results, severity, and type. However, explicitly stating acceptance criteria would make the item even clearer and easier to test. Examples of acceptance criteria include: 'The entire dropdown list is visible for all rows, even when the dropdown is located at the bottom of the scrollable container' or 'When the dropdown list would be cut off at the bottom, it automatically expands upwards so all options are visible'.\"}",
+      "status": "pending",
+      "created_at": "2025-11-26T09:03:06.75704"
+    }
+  ]
+}
