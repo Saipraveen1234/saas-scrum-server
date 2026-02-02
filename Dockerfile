@@ -18,6 +18,22 @@ RUN npm run build
 # Production Stage
 FROM node:20-alpine
 
+# Install Chromium, FFmpeg, and Xvfb for Bot
+RUN apk add --no-cache \
+      chromium \
+      nss \
+      freetype \
+      harfbuzz \
+      ca-certificates \
+      ttf-freefont \
+      ffmpeg \
+      xvfb
+
+# Tell Puppeteer to use the installed Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
+    DISPLAY=:99
+
 WORKDIR /app
 
 # Copy package files
@@ -35,5 +51,5 @@ EXPOSE 3000
 # Set environment to production
 ENV NODE_ENV=production
 
-# Start the server
-CMD ["node", "dist/index.js"]
+# Start Xvfb in background (cleanup first), wait for it, then start the server
+CMD ["sh", "-c", "rm -f /tmp/.X99-lock && Xvfb :99 -screen 0 1280x720x16 & sleep 2 && node dist/index.js"]
